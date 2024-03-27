@@ -1,5 +1,9 @@
 #ifndef HEADER_FILE
 #define HEADER_FILE
+#include <stdio.h>
+#include <stdlib.h>
+#include <stddef.h>
+#include <string.h>
 
 extern struct_t *temp;
 
@@ -34,5 +38,9 @@ typedef struct instruction_s
 } instruction_t;
 
 void push(struct_t **element, int line_number);
+void pall(struct_t **element, int line_number);
+void opcodes(char **command, int line_number);
+void readfile(char *filename);
+char **_tokenize(char *line)
 
 #endif

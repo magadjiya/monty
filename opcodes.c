@@ -20,7 +20,8 @@ void opcodes(char **command, int line_number)
 		{
 			if (!(command[1][i] >= '0' && command[i] <= '9'))
 			{
-				fprintf(stderr, "invalid command");
+				fprintf(stderr, "L%d: unknown instruction %s",
+					line_number, arr[i]->opcode);
 				exit(EXIT_FALURE);
 			}
 		}
@@ -31,7 +32,13 @@ void opcodes(char **command, int line_number)
 		{
 			if (i == 0)
 				element->n = atoi(command[1]);
-			arr[i]->(*f)(&element, line_number);
+			arr[i].(*f)(&element, line_number);
+		}
+		else
+		{
+			fprintf(stderr. "L%d: unknown instruction %s",
+				line_number, arr[i]->opcode);
+			exit(EXIT_FAILURE);
 		}
 	}
 }
