@@ -1,5 +1,5 @@
 #include "monty.h"
-struct_t temp = NULL;
+stack_t *temp = NULL;
 
 /**
  * push - pushes an element to the stack
@@ -7,13 +7,14 @@ struct_t temp = NULL;
  * @line_number: line number of command from buffer
  **/
 
-void push(struct_t **element, int line_number)
+void push(stack_t **element, unsigned int line_number)
 {
 	(*element)->next = temp;
 	(*element)->prev = NULL;
 	if (temp != NULL)
 		(*element)->prev = *element;
 	temp = *element;
+	line_number++;
 }
 
 /**
@@ -22,21 +23,20 @@ void push(struct_t **element, int line_number)
  * @line_number: line number of command from buffer
  **/
 
-void pall(struct_t **element, int line_number)
+void pall(stack_t **element, unsigned int line_number)
 {
-	int i = 0;
-
 	*element = temp;
 	if (*element == NULL)
 	{
-		fprint(stderr, "yo");
+		fprintf(stderr, "yo");
 	}
 	else
 	{
 		while (element != NULL)
 		{
-			printf("%d\n", *(element)->n);
-			*element = *(element)->next;
+			printf("%d\n", (*element)->n);
+			*element = (*element)->next;
 		}
 	}
+	line_number++;
 }

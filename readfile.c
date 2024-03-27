@@ -8,9 +8,8 @@ void readfile(char *filename)
 	char *line;
 	char **command;
 	int line_number = 1;
-	char **tokens = NULL;
 
-	fp = open(filename, "r");
+	fp = fopen(filename, "r");
 	if (fp == NULL)
 	{
 		fprintf(stderr, "Can't open file %s", filename);
@@ -20,6 +19,5 @@ void readfile(char *filename)
 	{
 		command = _tokenize(line);
 		opcodes(command, line_number);
-		line_number++;
 	}
 }

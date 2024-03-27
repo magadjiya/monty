@@ -1,35 +1,48 @@
-#include "main.h"
+#include "monty.h"
+
+/**
+ * tokenize - tokenizes input line from file
+ * @line: line to be tokenized
+ **/
 
 char **_tokenize(char *line)
 {
-	char *token;
+	char *token =  NULL;
 	char **tokens = NULL;
-	int pos = 0;
+	int i = 0, pos = 0;
 	int string_count = 1;
 
-	for (i = 0; command[i] != '\0'; i++)
+	for (i = 0; line[i] != '\0'; i++)
 	{
-		if (command[i] == ' ')
+		if (line[i] == ' ')
 			string_count++;
 	}
 	tokens = (char **)malloc(sizeof(char *) * (string_count + 1));
 	if (tokens == NULL)
 	{
-		fprintf(stderr, "Cannot Malloc");
+		fprintf(stderr, "Error: malloc failed");
+		free(line);
 		exit(EXIT_FAILURE);
 	}
-	token = strtok(command, " ");
+	token = strtok(line, " ");
 	while (token != NULL)
 	{
 		tokens[pos] = (char *)malloc(strlen(token) + 1);
 		if (tokens[pos] == NULL)
+		{
 			fprintf(stderr, "Cannot Malloc");
+			for (i = 0; i < pos; i++)
+				free(tokens[i]);
+			free(tokens);
+			exit(EXIT_FAILURE);
+		}
 		strcpy(tokens[pos], token);
 		pos++;
 		token = strtok(NULL, " ");
 	}
 
 	tokens[pos] =  NULL;
-	free(command);
+	free(line);
+
 	return (tokens);
 }
