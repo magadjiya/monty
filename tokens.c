@@ -1,6 +1,6 @@
 #include "main.h"
 
-char **_tokens(char *line)
+char **_tokenize(char *line)
 {
 	char *token;
 	char **tokens = NULL;

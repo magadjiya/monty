@@ -17,7 +17,7 @@ void readfile(char *filename)
 	}
 	while (getline(&line, 100, fp) != EOF)
 	{
-		command = tokenize(line);
+		command = _tokenize(line);
 		opcodes(command, line_number);
 		line_number++;
 	}

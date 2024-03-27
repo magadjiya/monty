@@ -33,6 +33,6 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void op_func(int *);
+void push(struct_t **element, int line_number);
 
 #endif

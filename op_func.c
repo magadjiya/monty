@@ -4,20 +4,17 @@
  * push - pushes an element to the stack
  **/
 
-void push(int *element)
+void push(struct_t **element, int line_number)
 {
-	struct_t *ptr;
 
-	ptr = malloc(sizeof(struct_t));
 	if (ptr == NULL)
 	{
 		fprintf("Error: malloc failed")
 		exit(EXIT_FAILURE);
 	}
-	ptr->n = element;
-	ptr->next = temp;
-	ptr->prev = NULL;
+	(*element)->next = temp;
+	(*element)->prev = NULL;
 	if (temp != NULL)
-		ptr->prev = ptr;
-	temp = ptr;
+		(*element)->prev = ptr;
+	temp = *element;
 }

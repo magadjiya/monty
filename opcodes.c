@@ -3,7 +3,8 @@
 void opcodes(char **command, int line_number)
 {
 	int i = 0;
-	struct_t element;
+	struct_t *element;
+	instruction_t arr[] = {{"push", push}, {"pall", pall}};
 
 	element = malloc(sizeof(struct_t));
 	if (element = NULL)
@@ -11,7 +12,6 @@ void opcodes(char **command, int line_number)
 		fprinf(stderr, "Error: malloc failed");
 		exit(EXIT_FAILURE);
 	}
-	instruction_t arr[] = {{"push", push}, {"pall", pall}};
 
 	for (i = 0; command[1][i] != '\0'; i++)
 	{
