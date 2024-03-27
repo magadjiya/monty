@@ -1,5 +1,5 @@
+#define _GNU_SOURCE
 #include "monty.h"
-#define MAX_READ 100
 
 
 void readfile(char *filename)
@@ -7,6 +7,7 @@ void readfile(char *filename)
 	FILE *fp;
 	char *line;
 	char **command;
+	size_t n = 0;
 	int line_number = 1;
 
 	fp = fopen(filename, "r");
@@ -15,7 +16,7 @@ void readfile(char *filename)
 		fprintf(stderr, "Can't open file %s", filename);
 		exit(EXIT_FAILURE);
 	}
-	while (getline(&line, MAX_READ, fp) != EOF)
+	while (getline(&line, &n, fp) != EOF)
 	{
 		command = _tokenize(line);
 		opcodes(command, line_number);

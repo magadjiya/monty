@@ -11,7 +11,7 @@ void opcodes(char **command, unsigned int line_number)
 	element = malloc(sizeof(stack_t));
 	if (element == NULL)
 	{
-		fprintf(stderr, "Error: malloc failed");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	if (count > 1)
@@ -20,7 +20,7 @@ void opcodes(char **command, unsigned int line_number)
 		{
 			if (!(command[1][i] >= '0' && command[1][i] <= '9'))
 			{
-				fprintf(stderr, "L%d: usage: push integer",
+				fprintf(stderr, "L%d: usage: push integer\n",
 					line_number);
 				exit(EXIT_FAILURE);
 			}
@@ -35,7 +35,7 @@ void opcodes(char **command, unsigned int line_number)
 				if (count < 2)
 				{
 					fprintf(stderr,
-						"L%d: usage: push integer",
+						"L%d: usage: push integer\n",
 						line_number);
 					exit(EXIT_FAILURE);
 				}
@@ -45,7 +45,7 @@ void opcodes(char **command, unsigned int line_number)
 		}
 		else
 		{
-			fprintf(stderr, "L%d: unknown instruction %s",
+			fprintf(stderr, "L%d: unknown instruction %s\n",
 				line_number, arr[i].opcode);
 			exit(EXIT_FAILURE);
 		}
