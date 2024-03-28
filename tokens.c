@@ -42,7 +42,6 @@ char **_tokenize(char *line)
 	}
 
 	tokens[pos] =  NULL;
-	free(line);
 
 	return (tokens);
 }

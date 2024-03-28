@@ -2,10 +2,11 @@
 
 void opcodes(char **command, unsigned int line_number)
 {
-	int i = 0, count = 0;
+	int i = 0, count = 0, num_instructions = 0;
 	stack_t *element;
 	instruction_t arr[] = {{"push", push}, {"pall", pall}};
 
+	num_instructions = sizeof(arr) / sizeof(arr[0]);
 	while (command[count] != NULL)
 		count++;
 	element = malloc(sizeof(stack_t));
@@ -26,7 +27,7 @@ void opcodes(char **command, unsigned int line_number)
 			}
 		}
 	}
-	for (i = 0; i < 2; i++)
+	for (i = 0; i < num_instructions; i++)
 	{
 		if (strcmp(command[0], arr[i].opcode) == 0)
 		{
@@ -42,12 +43,10 @@ void opcodes(char **command, unsigned int line_number)
 				element->n = atoi(command[1]);
 			}
 			arr[i].f(&element, line_number);
-		}
-		else
-		{
-			fprintf(stderr, "L%d: unknown instruction %s\n",
-				line_number, arr[i].opcode);
-			exit(EXIT_FAILURE);
+			return;
 		}
 	}
+	fprintf(stderr, "L%d: unknown instruction %s",
+		line_number, command[0]);
+	exit(EXIT_FAILURE);
 }
