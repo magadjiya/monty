@@ -49,5 +49,6 @@ void error_malloc(void);
 void error_command(stack_t *element, unsigned int line_number);
 void error_invalid_cmd(stack_t *element, unsigned int line, char *cmd);
 void _free(char *, FILE *fp);
+void is_digit(char **command, stack_t *, unsigned int line_number, int count);
 
 #endif /* MONTY_H */

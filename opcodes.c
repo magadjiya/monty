@@ -4,7 +4,6 @@
  * opcodes - operation codes
  * @command: the command given
  * @line_number: the current line the interpreter is implementing
- * Return: pointer to stack
  **/
 void opcodes(char **command, unsigned int line_number)
 {
@@ -18,17 +17,11 @@ void opcodes(char **command, unsigned int line_number)
 	element = malloc(sizeof(stack_t));
 	if (element == NULL)
 		error_malloc();
-
-	if (count > 1)
-	{
-		for (i = 0; command[1][i] != '\0'; i++)
-		{
-			if (!(command[1][i] >= '0' && command[1][i] <= '9'))
-				error_command(element, line_number);
-		}
-	}
+	is_digit(command, element, line_number, count);
 	for (i = 0; i < num_instructions; i++)
 	{
+		if (command[0] == NULL)
+			return;
 		if (strcmp(command[0], arr[i].opcode) == 0)
 		{
 			if (i == 0)
@@ -41,9 +34,29 @@ void opcodes(char **command, unsigned int line_number)
 			return;
 		}
 	}
-
 	error_invalid_cmd(element, line_number, command[0]);
-	free(element);
-	free(command);
-	exit(EXIT_FAILURE);
+}
+
+/**
+ * is_digit - checks if the second token is a digit
+ * @command: command tokens
+ * @element: stack
+ * @line_number: line number in file
+ * @count: number of tokens in input
+ **/
+
+void is_digit(char **command, stack_t *element,
+	      unsigned int line_number, int count)
+{
+	int i = 0;
+
+	if (count > 1)
+	{
+		for (i = 0; command[1][i] != '\0'; i++)
+		{
+			if (!(command[1][i] >= '0' && command[1][i] <= '9'))
+				error_command(element, line_number);
+		}
+	}
+
 }

@@ -29,7 +29,7 @@ void error_command(stack_t *element, unsigned int line_number)
  */
 void error_invalid_cmd(stack_t *element, unsigned int line, char *cmd)
 {
-	fprintf(stderr, "L%d: unknown instruction %s", line, cmd);
+	fprintf(stderr, "L%d: unknown instruction %s\n", line, cmd);
 	free(element);
 	exit(EXIT_FAILURE);
 }
