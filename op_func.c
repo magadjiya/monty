@@ -1,6 +1,4 @@
 #include "monty.h"
-
-void push(stack_t **element, unsigned int line_number);
 stack_t *temp = NULL;
 
 /**
@@ -11,12 +9,14 @@ stack_t *temp = NULL;
 
 void push(stack_t **element, unsigned int line_number)
 {
-	(*element)->next = temp;
-	(*element)->prev = NULL;
-	if (temp != NULL)
-		(*element)->prev = *element;
-	temp = *element;
-	line_number++;
+	if (line_number)
+	{
+		(*element)->next = temp;
+		(*element)->prev = NULL;
+		if (temp != NULL)
+			(*element)->prev = *element;
+		temp = *element;
+	}
 }
 
 /**
@@ -27,18 +27,20 @@ void push(stack_t **element, unsigned int line_number)
 
 void pall(stack_t **element, unsigned int line_number)
 {
-	*element = temp;
-	if (*element == NULL)
+	if (line_number)
 	{
-		fprintf(stderr, "yo");
-	}
-	else
-	{
-		while (*element != NULL)
+		*element = temp;
+		if (*element == NULL)
 		{
-			printf("%d\n", (*element)->n);
-			*element = (*element)->next;
+			;
+		}
+		else
+		{
+			while (*element != NULL)
+			{
+				printf("%d\n", (*element)->n);
+				*element = (*element)->next;
+			}
 		}
 	}
-	line_number++;
 }
