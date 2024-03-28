@@ -1,10 +1,11 @@
 #ifndef HEADER_FILE
 #define HEADER_FILE
+
+/* Header Files */
 #include <stdio.h>
 #include <stdlib.h>
 #include <stddef.h>
 #include <string.h>
-
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -38,10 +39,14 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/* Function Prototypes */
 void push(stack_t **element, unsigned int line_number);
 void pall(stack_t **element, unsigned int line_number);
 void opcodes(char **command, unsigned int line_number);
 void readfile(char *filename);
 char **_tokenize(char *line);
+void error_malloc(void);
+void error_command(stack_t *element, unsigned int line_number);
+void error_invalid_cmd(stack_t *element, unsigned int line, char *cmd);
 
-#endif
+#endif /* MONTY_H */

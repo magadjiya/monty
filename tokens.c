@@ -1,8 +1,9 @@
 #include "monty.h"
 
 /**
- * tokenize - tokenizes input line from file
+ * _tokenize - tokenizes input line from file
  * @line: line to be tokenized
+ * Return: the commands without white spaces
  **/
 
 char **_tokenize(char *line)
@@ -20,9 +21,8 @@ char **_tokenize(char *line)
 	tokens = (char **)malloc(sizeof(char *) * (string_count + 1));
 	if (tokens == NULL)
 	{
-		fprintf(stderr, "Error: malloc failed");
 		free(line);
-		exit(EXIT_FAILURE);
+		error_malloc();
 	}
 	token = strtok(line, " ");
 	while (token != NULL)

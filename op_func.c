@@ -1,4 +1,6 @@
 #include "monty.h"
+
+void push(stack_t **element, unsigned int line_number);
 stack_t *temp = NULL;
 
 /**

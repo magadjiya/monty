@@ -1,5 +1,10 @@
 #include "monty.h"
 
+/**
+ * opcodes - operation codes
+ * @command: the command given
+ * @line_number: the current line the interpreter is implementing
+ */
 void opcodes(char **command, unsigned int line_number)
 {
 	int i = 0, count = 0, num_instructions = 0;
@@ -11,21 +16,14 @@ void opcodes(char **command, unsigned int line_number)
 		count++;
 	element = malloc(sizeof(stack_t));
 	if (element == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
+		error_malloc();
+
 	if (count > 1)
 	{
 		for (i = 0; command[1][i] != '\0'; i++)
 		{
 			if (!(command[1][i] >= '0' && command[1][i] <= '9'))
-			{
-				fprintf(stderr, "L%d: usage: push integer\n",
-					line_number);
-				free(element);
-				exit(EXIT_FAILURE);
-			}
+				error_command(element, line_number);
 		}
 	}
 	for (i = 0; i < num_instructions; i++)
@@ -35,21 +33,15 @@ void opcodes(char **command, unsigned int line_number)
 			if (i == 0)
 			{
 				if (count < 2)
-				{
-					fprintf(stderr,
-						"L%d: usage: push integer\n",
-						line_number);
-					free(element);
-					exit(EXIT_FAILURE);
-				}
+					error_command(element, line_number);
 				element->n = atoi(command[1]);
 			}
 			arr[i].f(&element, line_number);
 			return;
 		}
 	}
-	fprintf(stderr, "L%d: unknown instruction %s",
-		line_number, command[0]);
+
+	error_invalid_cmd(element, line_number, command[0]);
 	free(element);
-	exit(EXIT_FAILURE);
+	free(command);
 }
