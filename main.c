@@ -3,7 +3,8 @@
 /**
  * main - monty interpreter
  * @ac: argument count
- * av: argument vector
+ * @av: argument vector
+ * Return: 0 on Success!
  **/
 
 int main(int ac, char **av)

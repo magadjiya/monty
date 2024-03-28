@@ -23,6 +23,7 @@ void opcodes(char **command, unsigned int line_number)
 			{
 				fprintf(stderr, "L%d: usage: push integer\n",
 					line_number);
+				free(element);
 				exit(EXIT_FAILURE);
 			}
 		}
@@ -38,6 +39,7 @@ void opcodes(char **command, unsigned int line_number)
 					fprintf(stderr,
 						"L%d: usage: push integer\n",
 						line_number);
+					free(element);
 					exit(EXIT_FAILURE);
 				}
 				element->n = atoi(command[1]);
@@ -48,5 +50,6 @@ void opcodes(char **command, unsigned int line_number)
 	}
 	fprintf(stderr, "L%d: unknown instruction %s",
 		line_number, command[0]);
+	free(element);
 	exit(EXIT_FAILURE);
 }

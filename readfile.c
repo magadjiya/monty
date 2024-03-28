@@ -8,7 +8,7 @@ void readfile(char *filename)
 	char *line = NULL;
 	char **command = NULL;
 	size_t n = 0;
-	int line_number = 1;
+	int line_number = 1, i = 0;
 
 	fp = fopen(filename, "r");
 	if (fp == NULL)
@@ -21,5 +21,14 @@ void readfile(char *filename)
 		line[strcspn(line, "\n")] = '\0';
 		command = _tokenize(line);
 		opcodes(command, line_number);
+		for (i = 0; command[i] != NULL; i++)
+			free(command[i]);
+		free(command);
+		free(temp);
+		command = NULL;
 	}
+	free(line);
+	line = NULL;
+	temp = NULL;
+	fclose(fp);
 }
