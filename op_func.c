@@ -32,7 +32,7 @@ void pall(stack_t **element, unsigned int line_number)
 	}
 	else
 	{
-		while (element != NULL)
+		while (*element != NULL)
 		{
 			printf("%d\n", (*element)->n);
 			*element = (*element)->next;
