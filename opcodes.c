@@ -4,7 +4,8 @@
  * opcodes - operation codes
  * @command: the command given
  * @line_number: the current line the interpreter is implementing
- */
+ * Return: pointer to stack
+ **/
 void opcodes(char **command, unsigned int line_number)
 {
 	int i = 0, count = 0, num_instructions = 0;
@@ -44,4 +45,5 @@ void opcodes(char **command, unsigned int line_number)
 	error_invalid_cmd(element, line_number, command[0]);
 	free(element);
 	free(command);
+	exit(EXIT_FAILURE);
 }

@@ -23,10 +23,7 @@ void readfile(char *filename)
 	while (getline(&line, &n, fp) != EOF)
 	{
 		if (strcmp(line, "\n") == 0)
-		{
-			printf("Newline");
-			exit(EXIT_SUCCESS);
-		}
+			getline(&line, &n, fp);
 		line[strcspn(line, "\n")] = '\0';
 		command = _tokenize(line);
 		opcodes(command, line_number);
@@ -35,11 +32,26 @@ void readfile(char *filename)
 		free(command);
 		command = NULL;
 	}
+	_free(line, fp);
+}
 
+/**
+ * _free - free all dynamically allocated memory
+ * @line: from getline
+ * @fp: file handler
+ **/
+
+void _free(char *line, FILE *fp)
+{
+	stack_t *holder;
+
+	while (temp != NULL)
+	{
+		holder = temp->next;
+		free(temp);
+		temp = holder;
+	}
 	free(line);
-	free(temp);
-
 	line = NULL;
-	temp = NULL;
 	fclose(fp);
 }
