@@ -11,7 +11,7 @@ void readfile(char *filename)
 	char *line = NULL;
 	char **command = NULL;
 	size_t n = 0;
-	int line_number = 0, i = 0;
+	int line_number = 1, i = 0;
 
 	fp = fopen(filename, "r");
 	if (fp == NULL)
