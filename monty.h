@@ -42,13 +42,15 @@ typedef struct instruction_s
 /* Function Prototypes */
 void push(stack_t **element, unsigned int line_number);
 void pall(stack_t **element, unsigned int line_number);
-void opcodes(char **command, unsigned int line_number);
+void opcodes(char **command, unsigned int line_number, char *line, FILE *fp);
 void readfile(char *filename);
 char **_tokenize(char *line);
 void error_malloc(void);
-void error_command(stack_t *element, unsigned int line_number);
+void error_command(char **command, stack_t *element,
+		   unsigned int line_number, char * line, FILE *fp);
 void error_invalid_cmd(stack_t *element, unsigned int line, char *cmd);
 void _free(char *, FILE *fp);
-void is_digit(char **command, stack_t *, unsigned int line_number, int count);
+void is_digit(char **command, stack_t *, unsigned int line_number,
+	      int count, char *line, FILE *fp);
 
 #endif /* MONTY_H */

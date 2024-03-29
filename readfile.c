@@ -26,12 +26,15 @@ void readfile(char *filename)
 			getline(&line, &n, fp);
 		line[strcspn(line, "\n")] = '\0';
 		command = _tokenize(line);
-		opcodes(command, line_number);
-		line_number++;
+		opcodes(command, line_number, line, fp);
 		for (i = 0; command[i] != NULL; i++)
+		{
 			free(command[i]);
+			command[i] = NULL;
+		}
 		free(command);
 		command = NULL;
+		line_number++;
 	}
 	_free(line, fp);
 }
@@ -52,6 +55,7 @@ void _free(char *line, FILE *fp)
 		free(temp);
 		temp = holder;
 	}
+	temp = holder = NULL;
 	free(line);
 	line = NULL;
 	fclose(fp);

@@ -40,7 +40,6 @@ char **_tokenize(char *line)
 		pos++;
 		token = strtok(NULL, " ");
 	}
-
 	tokens[pos] =  NULL;
 
 	return (tokens);
