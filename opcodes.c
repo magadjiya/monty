@@ -15,7 +15,7 @@ void opcodes(char **command, unsigned int line_number,
 	instruction_t arr[] = {{"push", push}, {"pall", pall}};
 
 	num_instructions = sizeof(arr) / sizeof(arr[0]);
-	while (command[count] != NULL)
+	while (command != NULL && command[count] != NULL)
 		count++;
 	element = malloc(sizeof(stack_t));
 	if (element == NULL)
