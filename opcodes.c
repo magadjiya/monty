@@ -62,9 +62,13 @@ void is_digit(char **command, stack_t *element,
 	{
 		for (i = 0; command[1][i] != '\0'; i++)
 		{
-			if (command[1][i] != '0' && atoi(command[1]) == 0)
+			if (!(command[1][i] == '0'
+			      || strcmp(command[1], "-0") == 0)
+			    && atoi(command[1]) == 0)
+			{
 				error_command(command, element,
 					      line_number, line, fp);
+			}
 		}
 	}
 
