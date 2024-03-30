@@ -11,21 +11,16 @@ void opcodes(char **command, unsigned int line_number,
 	     char *line, FILE *fp)
 {
 	int i = 0, count = 0, num_instructions = 0;
-	stack_t *element;
+	stack_t *element = NULL;
 	instruction_t arr[] = {{"push", push}, {"pall", pall}};
 
 	num_instructions = sizeof(arr) / sizeof(arr[0]);
 	while (command != NULL && command[count] != NULL)
 		count++;
-	element = malloc(sizeof(stack_t));
-	if (element == NULL)
-		error_malloc();
-	is_digit(command, element, line_number, count, line, fp);
 	for (i = 0; i < num_instructions; i++)
 	{
 		if (command[0] == NULL)
 		{
-			free(element);
 			return;
 		}
 		if (strcmp(command[0], arr[i].opcode) == 0)
@@ -35,6 +30,10 @@ void opcodes(char **command, unsigned int line_number,
 			if (count < 2)
 				error_command(command, element,
 					      line_number, line, fp);
+			element = malloc(sizeof(stack_t));
+			if (element == NULL)
+				error_malloc();
+			is_digit(command, element, line_number, count, line, fp);
 			element->n = atoi(command[1]);
 			}
 			arr[i].f(&element, line_number);
