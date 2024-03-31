@@ -18,12 +18,11 @@ void error_malloc(void)
  * @fp: file pointer
  */
 void error_command(char **command, stack_t *element,
-		   unsigned int line_number, char *line, FILE *fp)
+		   char *line, FILE *fp)
 {
 	stack_t *holder = temp;
 	int i = 0;
 
-	fprintf(stderr, "L%d: usage: push integer\n", line_number);
 	while (temp != NULL)
 	{
 		holder = temp->next;

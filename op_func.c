@@ -44,3 +44,23 @@ void pall(stack_t **element, unsigned int line_number)
 		}
 	}
 }
+
+/**
+ * pint - prints the value at the top of the stack
+ * @element: stack
+ * @line_number: line number in file
+ **/
+
+void pint(stack_t **element, unsigned int line_number)
+{
+	unsigned int i = 0;
+        *element = temp;
+        if (temp == NULL)
+        {
+                fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		for (i = 0; element[i] != NULL; i++)
+			free(element[i]);
+		free(element);
+        }
+        printf("%d\n", (*element)->n);
+}

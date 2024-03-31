@@ -47,10 +47,11 @@ void readfile(char *filename);
 char **_tokenize(char *line);
 void error_malloc(void);
 void error_command(char **command, stack_t *element,
-		   unsigned int line_number, char * line, FILE *fp);
+		   char * line, FILE *fp);
 void error_invalid_cmd(stack_t *element, unsigned int line, char *cmd);
 void _free(char *, FILE *fp);
 void is_digit(char **command, stack_t *, unsigned int line_number,
 	      int count, char *line, FILE *fp);
+void pint(stack_t **element, unsigned int line_number);
 
 #endif /* MONTY_H */

@@ -12,7 +12,8 @@ void opcodes(char **command, unsigned int line_number,
 {
 	int i = 0, count = 0, num_instructions = 0;
 	stack_t *element = NULL;
-	instruction_t arr[] = {{"push", push}, {"pall", pall}};
+	instruction_t arr[] = {{"push", push}, {"pall", pall},
+			       {"pint", pint}};
 
 	num_instructions = sizeof(arr) / sizeof(arr[0]);
 	while (command != NULL && command[count] != NULL)
@@ -28,8 +29,11 @@ void opcodes(char **command, unsigned int line_number,
 			if (i == 0)
 			{
 			if (count < 2)
-				error_command(command, element,
-					      line_number, line, fp);
+			{
+				fprintf(stderr, "L%d: usage: push integer\n",
+					line_number);
+				error_command(command, element, line, fp);
+			}
 			element = malloc(sizeof(stack_t));
 			if (element == NULL)
 				error_malloc();
@@ -62,12 +66,11 @@ void is_digit(char **command, stack_t *element,
 	{
 		for (i = 0; command[1][i] != '\0'; i++)
 		{
-			if (!(command[1][i] == '0'
-			      || strcmp(command[1], "-0") == 0)
-			    && atoi(command[1]) == 0)
+			if (command[1][i] != '0' && atoi(command[1]) == 0)
 			{
-				error_command(command, element,
-					      line_number, line, fp);
+				fprintf(stderr, "L%d: usage: push integer\n",
+					line_number);
+				error_command(command, element, line, fp);
 			}
 		}
 	}
