@@ -28,7 +28,7 @@ void readfile(char *filename)
 			getline(&line, &n, fp);
 		}
 		line[strcspn(line, "\n")] = '\0';
-		command = _tokenize(line);
+		command = _tokenize(line, line_number, fp);
 		opcodes(command, line_number, line, fp);
 		line_number++;
 		for (i = 0; command[i] != NULL; i++)

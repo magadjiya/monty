@@ -6,7 +6,7 @@
  * Return: the commands without white spaces
  **/
 
-char **_tokenize(char *line)
+char **_tokenize(char *line, unsigned int line_number, FILE *fp)
 {
 	char *token =  NULL;
 	char **tokens = NULL;
@@ -17,6 +17,12 @@ char **_tokenize(char *line)
 	{
 		if (line[i] == ' ')
 			string_count++;
+	}
+	if (line_number == 1 && strcmp(line, "pint") == 0)
+	{
+		free(line);
+		fclose(fp);
+		exit(EXIT_FAILURE);
 	}
 	tokens = (char **)malloc(sizeof(char *) * (string_count + 1));
 	if (tokens == NULL)

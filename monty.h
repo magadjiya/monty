@@ -44,7 +44,7 @@ void push(stack_t **element, unsigned int line_number);
 void pall(stack_t **element, unsigned int line_number);
 void opcodes(char **command, unsigned int line_number, char *line, FILE *fp);
 void readfile(char *filename);
-char **_tokenize(char *line);
+char **_tokenize(char *line, unsigned int line_number, FILE *fp);
 void error_malloc(void);
 void error_command(char **command, stack_t *element,
 		   char * line, FILE *fp);

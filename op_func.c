@@ -53,14 +53,8 @@ void pall(stack_t **element, unsigned int line_number)
 
 void pint(stack_t **element, unsigned int line_number)
 {
-	unsigned int i = 0;
-        *element = temp;
-        if (temp == NULL)
-        {
-                fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-		for (i = 0; element[i] != NULL; i++)
-			free(element[i]);
-		free(element);
-        }
+	*element = temp;
+	if (*element == NULL)
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
         printf("%d\n", (*element)->n);
 }
